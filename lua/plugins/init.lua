@@ -104,8 +104,4 @@ return {
       vim.fn["mkdp#util#install"]()
     end,
   },
-  {
-    "github/copilot.vim",
-    event = "InsertEnter", -- lazy-load on insert mode
-  },
 }
