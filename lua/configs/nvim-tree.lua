@@ -6,9 +6,9 @@ return {
   hijack_cursor = true,
   sync_root_with_cwd = true,
   update_focused_file = {
-    enable = true, -- Enable updating focused file
+    enable = true,      -- Enable updating focused file
     update_root = true, -- Update tree root to match the current file's directory
-    ignore_list = {}, -- List of files to ignore (keep empty for now)
+    ignore_list = {},   -- List of files to ignore (keep empty for now)
   },
   view = {
     width = 30,

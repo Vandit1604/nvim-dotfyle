@@ -41,8 +41,8 @@ local servers = {
 -- Setup LSP servers with Aerial on_attach
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
-    on_attach = on_attach, -- Use the shared on_attach (includes Aerial + NvChad defaults)
-    on_init = nvlsp.on_init, -- NvChad's on_init
+    on_attach = on_attach,             -- Use the shared on_attach (includes Aerial + NvChad defaults)
+    on_init = nvlsp.on_init,           -- NvChad's on_init
     capabilities = nvlsp.capabilities, -- NvChad's capabilities
   }
 end

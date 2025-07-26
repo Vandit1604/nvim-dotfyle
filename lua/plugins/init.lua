@@ -4,9 +4,9 @@ return {
     ft = { "go" },
     config = function()
       vim.g.go_fmt_command = "goimports" -- Use goimports to organize imports
-      vim.g.go_fmt_autosave = 1 -- Auto-format (and organize imports) on save
-      vim.g.go_auto_type_info = 0 -- Disable auto type info (disables go doc pop-ups)
-      vim.g.go_def_mapping_enabled = 0 -- Disable default mappings if you want to customize
+      vim.g.go_fmt_autosave = 1          -- Auto-format (and organize imports) on save
+      vim.g.go_auto_type_info = 0        -- Disable auto type info (disables go doc pop-ups)
+      vim.g.go_def_mapping_enabled = 0   -- Disable default mappings if you want to customize
 
       -- Unmap Shift+K for Go files to disable vim-go godoc
       vim.api.nvim_create_autocmd("FileType", {
@@ -77,7 +77,7 @@ return {
     "stevearc/aerial.nvim",
     dependencies = {
       "nvim-treesitter/nvim-treesitter", -- Treesitter for better symbol parsing
-      "nvim-lspconfig", -- LSP for language support
+      "nvim-lspconfig",                  -- LSP for language support
     },
     config = function()
       require("aerial").setup {
