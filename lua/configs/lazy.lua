@@ -44,4 +44,9 @@ return {
       },
     },
   },
+
+  rocks = {
+    enabled = false,
+    hererocks = false,
+  },
 }
