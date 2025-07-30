@@ -1,44 +1,29 @@
 return {
   {
-    "fatih/vim-go",
-    ft = { "go" },
-    config = function()
-      vim.g.go_fmt_command = "goimports" -- Use goimports to organize imports
-      vim.g.go_fmt_autosave = 1          -- Auto-format (and organize imports) on save
-      vim.g.go_auto_type_info = 0        -- Disable auto type info (disables go doc pop-ups)
-      vim.g.go_def_mapping_enabled = 0   -- Disable default mappings if you want to customize
-
-      -- Unmap Shift+K for Go files to disable vim-go godoc
-      vim.api.nvim_create_autocmd("FileType", {
-        pattern = "go",
-        callback = function()
-          vim.api.nvim_buf_del_keymap(0, "n", "K")
-        end,
-      })
-
-      -- Tree-sitter based folding setup
-      vim.cmd [[
-        autocmd FileType go setlocal foldmethod=expr
-        autocmd FileType go setlocal foldexpr=nvim_treesitter#foldexpr()
-        autocmd FileType go setlocal foldenable
-      ]]
-
-      -- Preserve folds on save
+    "ray-x/go.nvim",
+    dependencies = { -- optional packages
+      "ray-x/guihua.lua",
+      "neovim/nvim-lspconfig",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    opts = {
+      -- lsp_keymaps = false,
+      -- other options
+    },
+    config = function(lp, opts)
+      require("go").setup(opts)
+      local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
       vim.api.nvim_create_autocmd("BufWritePre", {
         pattern = "*.go",
         callback = function()
-          vim.cmd "mkview" -- Save current fold view
+          require("go.format").goimports()
         end,
-      })
-
-      vim.api.nvim_create_autocmd("BufWritePost", {
-        pattern = "*.go",
-        callback = function()
-          vim.cmd "silent! loadview" -- Restore fold view after save
-        end,
+        group = format_sync_grp,
       })
     end,
-    build = ":GoInstallBinaries",
+    event = { "CmdlineEnter" },
+    ft = { "go", "gomod" },
+    build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
   },
   {
     "nvim-treesitter/nvim-treesitter",
@@ -77,7 +62,7 @@ return {
     "stevearc/aerial.nvim",
     dependencies = {
       "nvim-treesitter/nvim-treesitter", -- Treesitter for better symbol parsing
-      "nvim-lspconfig",                  -- LSP for language support
+      "nvim-lspconfig", -- LSP for language support
     },
     config = function()
       require("aerial").setup {
