@@ -55,6 +55,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     config = function()
+      require "configs.diagnostics"
       require "configs.lspconfig"
     end,
   },
