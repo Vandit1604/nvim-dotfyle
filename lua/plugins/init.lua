@@ -7,7 +7,7 @@ return {
     ft = { "go" },
     config = function()
       vim.g.go_fmt_command = "goimports" -- Use goimports to organize imports
-      vim.g.go_fmt_autosave = 1 -- Auto-format (and organize imports) on save
+      vim.g.go_fmt_autosave = 0 -- Auto-format (and organize imports) on save
       vim.g.go_auto_type_info = 0 -- Disable auto type info (disables go doc pop-ups)
       vim.g.go_def_mapping_enabled = 0 -- Disable default mappings if you want to customize
 
