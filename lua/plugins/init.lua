@@ -4,7 +4,21 @@ return {
   },
   {
     "fatih/vim-go",
-    ft = { "go", "gomod" },
+    ft = { "go" },
+    config = function()
+      vim.g.go_fmt_command = "goimports" -- Use goimports to organize imports
+      vim.g.go_fmt_autosave = 1 -- Auto-format (and organize imports) on save
+      vim.g.go_auto_type_info = 0 -- Disable auto type info (disables go doc pop-ups)
+      vim.g.go_def_mapping_enabled = 0 -- Disable default mappings if you want to customize
+
+      -- Unmap Shift+K for Go files to disable vim-go godoc
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "go",
+        callback = function()
+          vim.api.nvim_buf_del_keymap(0, "n", "K")
+        end,
+      })
+    end,
     build = ":GoInstallBinaries",
   },
   {
