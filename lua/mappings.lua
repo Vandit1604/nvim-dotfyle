@@ -15,7 +15,8 @@ map("n", "<leader>q", "<cmd>x<CR>", { desc = "save and close file" })
 -- Folding
 map("n", "za", "za", { desc = "Toggle fold" })
 map("n", "<leader>zA", "zR", { desc = "Open all folds" })
-map("n", "<leader>zm", "zM", { desc = "Close all folds" })
+map("n", "<leader>zm", "zxzM", { desc = "Update folds and close all" })
+-- map("n", "<leader>zm", "zM", { desc = "Close all folds" })
 map("n", "<leader>zf", "zf", { desc = "Create fold" })
 map("n", "<leader>zd", "zd", { desc = "Delete fold" })
 
